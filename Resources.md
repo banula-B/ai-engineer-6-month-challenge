@@ -1,0 +1,1 @@
+numpy - freeCodeCamp youtube -https://youtu.be/QUT1VHiLmmI?si=mnKNUINhSC48TWwW
