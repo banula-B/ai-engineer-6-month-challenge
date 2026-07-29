@@ -33,8 +33,8 @@ Based on your roadmap: Phase 1 (Foundations) → Phase 2 (Core AI/ML) → Phase 
 |---|---|
 | 1 | Set up repo + dev environment (Python, venv, Jupyter/VSCode). NumPy basics: arrays, broadcasting, vectorized ops |
 | 2 | NumPy: linear algebra ops (dot, matmul, reshape), practice 10 exercises |
-| 3 | Pandas: Series/DataFrame, filtering, groupby, merge — work through a real CSV dataset |
-| 4 | Pandas: data cleaning (nulls, dtypes, pivot tables) on a messier dataset |
+| 3 | Pandas Fundamentals: Introduction to Pandas, Series, DataFrames, indexing (loc, iloc), adding rows & columns, importing CSV/JSON files, data selection, and building a simple dataset search application using a real CSV dataset. |
+| 4 | Pandas Data Analysis: Filtering data, aggregation functions, data cleaning (handling missing values, removing duplicates, fixing data types), and an introduction to pivot tables using a real-world dataset. |
 | 5 | Python OOP refresher: classes, inheritance, dunder methods — refactor a script into classes |
 | 6 | Mini project: clean + analyze a public dataset (e.g. Kaggle Titanic/housing) end-to-end, push notebook |
 | 7 | Rest/review. Update README checklist |
