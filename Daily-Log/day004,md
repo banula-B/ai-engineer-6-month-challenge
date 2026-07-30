@@ -1,0 +1,355 @@
+# 📅 Day 004 - Pandas Data Analysis & Data Cleaning
+
+> **6 Months AI Engineer Challenge**
+
+## 🎯 Objective
+
+Today, I learned how to analyze and clean datasets using **Pandas**. I explored filtering data, performing aggregation, grouping records, cleaning datasets, and creating pivot tables to summarize data efficiently.
+
+---
+
+# 📚 Topics Covered
+
+## 1. Filtering Data
+
+Filtering allows us to keep only the rows that match a specific condition.
+
+This is useful when we want to analyze only a subset of data.
+
+### Filtering with a Single Condition
+
+Example: Select Pokémon with a height greater than or equal to **2 meters**.
+
+```python
+tall_pokemon = df[df["Height"] >= 2]
+
+print(tall_pokemon)
+```
+
+Example: Select Pokémon weighing more than **100 kg**.
+
+```python
+heavy_pokemon = df[df["Weight"] > 100]
+
+print(heavy_pokemon)
+```
+
+---
+
+## 2. Filtering with Multiple Conditions
+
+When using multiple conditions in Pandas, we must use **bitwise operators** instead of Python's logical operators.
+
+| Operator | Meaning |
+|----------|---------|
+| `&` | AND |
+| `|` | OR |
+| `~` | NOT |
+
+Example:
+
+```python
+water_pokemon = df[
+    (df["Type1"] == "Water") |
+    (df["Type2"] == "Water")
+]
+
+print(water_pokemon)
+```
+
+> **Note:** Always wrap each condition in parentheses when using `&` or `|`.
+
+---
+
+# 3. Aggregation
+
+Aggregation summarizes a collection of values into a single result.
+
+Common aggregation functions include:
+
+- `mean()`
+- `sum()`
+- `min()`
+- `max()`
+- `count()`
+
+---
+
+## Calculating Statistics for the Entire Dataset
+
+```python
+mean = df.mean(numeric_only=True)
+
+print(mean)
+```
+
+```python
+sum = df.sum(numeric_only=True)
+
+print(sum)
+```
+
+### Why `numeric_only=True`?
+
+Datasets often contain text columns.
+
+Mathematical calculations can only be performed on numeric columns, so `numeric_only=True` tells Pandas to ignore non-numeric data.
+
+---
+
+## Aggregating a Single Column
+
+Example:
+
+```python
+average_height = df["Height"].mean()
+
+print(average_height)
+```
+
+```python
+average_weight = df["Weight"].mean()
+
+print(average_weight)
+```
+
+---
+
+# 4. Grouping Data with `groupby()`
+
+The `groupby()` function groups rows based on a common value and allows aggregation for each group.
+
+Example:
+
+```python
+group = df.groupby("Type1")
+
+print(group["Height"].mean())
+```
+
+This calculates the average height of Pokémon in each primary type.
+
+---
+
+# 5. Data Cleaning
+
+Data cleaning prepares datasets for analysis and Machine Learning.
+
+---
+
+## Removing Unnecessary Columns
+
+```python
+df = df.drop(columns=["Legendary", "No"])
+
+print(df)
+```
+
+---
+
+## Handling Missing Values
+
+Remove rows containing missing values in a specific column.
+
+```python
+df = df.dropna(subset=["Type2"])
+
+print(df)
+```
+
+---
+
+## Standardizing Text
+
+Convert all Pokémon names to lowercase.
+
+```python
+df["Name"] = df["Name"].str.lower()
+
+print(df)
+```
+
+This ensures consistent formatting throughout the dataset.
+
+---
+
+## Fixing Data Types
+
+Convert a column to another data type.
+
+Example:
+
+```python
+df["Legendary"] = df["Legendary"].astype(bool)
+
+print(df)
+```
+
+---
+
+## Removing Duplicate Rows
+
+```python
+df = df.drop_duplicates()
+
+print(df)
+```
+
+Removing duplicate records helps improve data quality.
+
+---
+
+# 6. Pivot Tables
+
+A **Pivot Table** is a powerful Pandas feature used to summarize and reorganize data into a structured table.
+
+It allows us to quickly compare values across different categories.
+
+---
+
+## Creating a Basic Pivot Table
+
+```python
+df = pd.read_csv("../data sets/weather.csv")
+
+print(df)
+```
+
+Create a pivot table:
+
+```python
+df.pivot(
+    index="date",
+    columns="city"
+)
+```
+
+---
+
+## Selecting Specific Values
+
+Display only the temperature values.
+
+```python
+df.pivot(
+    index="date",
+    columns="city",
+    values="temperature"
+)
+```
+
+---
+
+# 7. Pivot Tables with Duplicate Data
+
+Sometimes a dataset contains multiple records for the same row and column combination.
+
+Example:
+
+```python
+df = pd.read_csv("../data sets/weather2.csv")
+
+print(df)
+```
+
+Using `pivot()` on this dataset may not work because duplicate combinations exist.
+
+Instead, use `pivot_table()`.
+
+```python
+df.pivot_table(
+    index="city",
+    columns="date"
+)
+```
+
+By default, Pandas calculates the **mean** for duplicate values.
+
+---
+
+## Using Different Aggregation Functions
+
+The `aggfunc` parameter changes how duplicate values are summarized.
+
+Example:
+
+```python
+df.pivot_table(
+    index="city",
+    columns="date",
+    aggfunc="sum"
+)
+```
+
+Other commonly used aggregation functions include:
+
+- `"mean"`
+- `"sum"`
+- `"max"`
+- `"min"`
+- `"count"`
+
+---
+
+# 💡 Key Learnings
+
+- Filtering helps extract only the required rows.
+- Multiple filtering conditions require bitwise operators (`&`, `|`, `~`).
+- Aggregation summarizes numeric data.
+- `groupby()` is useful for analyzing categories separately.
+- Data cleaning improves dataset quality before analysis or Machine Learning.
+- `dropna()` removes missing data.
+- `drop_duplicates()` removes repeated records.
+- `.astype()` converts data types.
+- Pivot tables provide an easy way to summarize and compare data.
+- `pivot_table()` can handle duplicate values using aggregation functions.
+
+---
+
+# ✅ Skills Practiced Today
+
+- Filtering data with conditions
+- Multiple-condition filtering
+- Aggregation functions
+- Dataset statistics
+- `groupby()` operations
+- Removing unnecessary columns
+- Handling missing values
+- Standardizing text
+- Changing data types
+- Removing duplicate rows
+- Creating pivot tables
+- Using `pivot_table()`
+- Applying aggregation functions in pivot tables
+
+---
+
+# 📖 Summary
+
+Today, I learned how to analyze and prepare datasets using **Pandas**. I practiced filtering rows, summarizing data with aggregation functions, grouping records, cleaning messy datasets, and using pivot tables to create meaningful summaries.
+
+These skills are essential in real-world data analysis because raw datasets often contain missing values, duplicates, inconsistent formatting, and large amounts of information that need to be organized before building Machine Learning models.
+
+---
+
+# 🚀 Day 004 Status
+
+**✅ Completed Successfully**
+
+### 📅 Next Topic (Day 005)
+
+Tomorrow I will review and strengthen my understanding of **Object-Oriented Programming (OOP) in Python** by learning:
+
+- 📌 Classes and Objects
+- 📌 Constructors (`__init__`)
+- 📌 Instance Attributes and Methods
+- 📌 Inheritance
+- 📌 Method Overriding
+- 📌 Dunder (Magic) Methods (`__str__`, `__repr__`, `__len__`, etc.)
+- 📌 Refactoring a procedural Python script into an object-oriented design
+
+This refresher will strengthen my Python programming skills and prepare me for building larger, more maintainable AI and Machine Learning projects.
+
+---
+
+**6 Months AI Engineer Challenge** 🤖
