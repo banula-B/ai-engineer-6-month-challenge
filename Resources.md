@@ -7,3 +7,6 @@ freeCodeCamp youtube - https://youtu.be/gtjxAH8uaP0?si=F6og34P0JJTjlXbC
 w3schools - https://www.w3schools.com/python/pandas/default.asp
 
 Dataset - https://www.kaggle.com/datasets/themrityunjaypathak/pandas-practice-dataset
+
+# OOP
+freeCodeCamp youtube - https://youtu.be/Ej_02ICOIgs?si=Kycx1-n-X5Aw7Ma2
