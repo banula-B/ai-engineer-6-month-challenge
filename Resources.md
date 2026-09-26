@@ -1,9 +1,8 @@
 ## Learning Resources
 
 # NumPy
-```text
-Bro Code Youtube - https://youtu.be/VXU4LSAQDSc?si=NzpCJAqnzkDY7RwG
 
-```
+- [Bro Code Youtube] - (https://youtu.be/VXU4LSAQDSc?si=NzpCJAqnzkDY7RwG)
+
 
  
